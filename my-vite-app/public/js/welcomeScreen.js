@@ -2,7 +2,7 @@ import * as PIXI from 'pixi.js'
 
 // container
 let welMainContainer;
-
+let baseGameContainer;
 
 // Set up textures after loading
 let buttonTextureIdle = PIXI.Texture.from('./public/assets/welcome-screen/Continue_Button_Idle.png')
@@ -11,7 +11,8 @@ let buttonTexturePressed = PIXI.Texture.from('./public/assets/welcome-screen/Con
 // let buttonTextureDisable = PIXI.Texture.from('./public/assets/welcome-screen/Continue_Button_Disabled.png');
 
 function setupWelcomeScreen(app) {
-
+    app.stage.children[1].interactiveChildren = false;
+    baseGameContainer = app.stage.children[1];
     welMainContainer = new PIXI.Container();
     welMainContainer.name = 'welcomeMainContainer';
 
@@ -50,10 +51,14 @@ function setupWelcomeScreen(app) {
     // Button interactions
     button
     .on('pointerdown', onButtonDown)
-    .on('pointerup', onButtonUp)
-    .on('pointerupoutside', onButtonUp)
-    .on('pointerover', onButtonOver)
-    .on('pointerout', onButtonOut);
+        .on('pointerup', onButtonUp)
+        .on('pointerupoutside', onButtonUp)
+        .on('pointerover', onButtonOver)
+        .on('pointerout', onButtonOut);
+    // button.on('pointerdown', (e) => {
+    //     onButtonDown(e);
+    //     welMainContainer.visible = false;
+    // });
 
 }
 
@@ -76,7 +81,8 @@ function onButtonOut() {
 function onButtonDown() {
     this.texture = buttonTexturePressed;
     welMainContainer.visible = false;
-    
+    baseGameContainer.interactiveChildren = true;
+
 }
 
 // Function to handle button release (mouse up)
