@@ -4,17 +4,21 @@ import * as PIXI from 'pixi.js'
 
 let isSpinning = false;
 const reels = [];
+const reelMainContainer = new PIXI.Container() ;
+
 
 function createReels(app, reelFrame) {
     const REEL_WIDTH = 160;
     const SYMBOL_SIZE = 150;
+    reelMainContainer.name = 'reelMainContainer'
+    reelFrame.addChild(reelMainContainer);
 
     for (let i = 0; i < 5; i++) {
         const reelContainer = new PIXI.Container();
         reelContainer.name = 'reelContainer'+i
         reelContainer.x = i * REEL_WIDTH;
         reelContainer.y = 0;
-        reelFrame.addChild(reelContainer);
+        reelMainContainer.addChild(reelContainer);
 
         const symbols = [];
         for (let j = 0; j < 3; j++) {
@@ -39,6 +43,16 @@ function createReels(app, reelFrame) {
             }
         }
     });
+
+        // Create and add the mask
+    const reelMask = new PIXI.Graphics();
+    reelMask.name = "reelMask"
+    reelMask.beginFill(0xFFFFFF);
+    reelMask.drawRect(100.5, 100, 792, 446); // Adjust size to match your reel area
+    reelMask.endFill();
+    reelMask.visible = true
+    // reelMainContainer.addChild(reelMask);
+    reelMainContainer.mask = reelMask;
 }
 
 function onSpinButtonClicked(app) {

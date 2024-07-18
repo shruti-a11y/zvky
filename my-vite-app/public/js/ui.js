@@ -37,13 +37,6 @@ function createGameUI(app) {
 
     reelFrameCont.scale.set(0.7);
 
-    // Create and add the mask
-    const reelMask = new PIXI.Graphics();
-    reelMask.name = "reelMask"
-    reelMask.beginFill(0xFFFFFF);
-    reelMask.drawRect(0, 0, 200, 200); // Adjust size to match your reel area
-    reelMask.endFill();
-    // reelFrame.mask = reelMask;
 
     createReels(app, reelFrame);
     createBtnPanel(app);
