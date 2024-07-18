@@ -48,7 +48,7 @@ function createReels(app, reelFrame) {
     const reelMask = new PIXI.Graphics();
     reelMask.name = "reelMask"
     reelMask.beginFill(0xFFFFFF);
-    reelMask.drawRect(100.5, 100, 792, 360); // Adjust size to match your reel area
+    reelMask.drawRect(200, 100, 792, 360); // Adjust size to match your reel area
     reelMask.endFill();
     reelMask.visible = true
     // reelMainContainer.addChild(reelMask);

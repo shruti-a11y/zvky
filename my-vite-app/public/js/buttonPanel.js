@@ -19,7 +19,7 @@ let info_Hover = PIXI.Texture.from('../public/assets/GameUI/desktop/Info_Hover.p
 let info_Pressed = PIXI.Texture.from('../public/assets/GameUI/desktop/Info_Pressed.png');
 let info_Disable = PIXI.Texture.from('../public/assets/GameUI/desktop/Info_Disabled.png');
 
-function createBtnPanel(app) {
+function createBtnPanel(app,baseGame) {
 
     btnMainContainer = new PIXI.Container();
     btnMainContainer.name = 'btnMainContainer';
@@ -47,7 +47,7 @@ function createBtnPanel(app) {
     spinBtn.on('pointerdown', () => {
         onSpinButtonClicked(app)
     });
-    app.stage.addChild(btnMainContainer);
+    baseGame.addChild(btnMainContainer);
     btnMainContainer.addChild(spinBtn);
     spinBtn.on('pointerupoutside',()=>{
         onButtonUp(e)
@@ -71,7 +71,7 @@ function createBtnPanel(app) {
     info_btn.y = 541;
     info_btn.interactive = true;
     info_btn.buttonMode = true;
-    app.stage.addChild(btnMainContainer);
+    baseGame.addChild(btnMainContainer);
     btnMainContainer.addChild(info_btn);
     info_btn.on('pointerupoutside', ()=>{
         onButtonUp(e)

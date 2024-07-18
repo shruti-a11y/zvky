@@ -10,9 +10,16 @@ function createGameUI(app) {
     let bgContainer = new PIXI.Container();
     bgContainer.name = "backgroundContainer";
     const background = new PIXI.Sprite(PIXI.Loader.shared.resources['background'].texture);
-    background.anchor.set(0.5, 0.5);
+    background.width = window.innerWidth;
+    background.height = window.innerHeight;
     app.stage.addChild(bgContainer);
     bgContainer.addChild(background);
+
+
+    const baseGame = new PIXI.Container();
+    baseGame.name = "baseGame";
+    baseGame.x = 247;
+    app.stage.addChild(baseGame);
     
     // const spineData = PIXI.Loader.shared.resources['backgroundSpine'].spineData;
 
@@ -25,7 +32,7 @@ function createGameUI(app) {
     reelFrame.name = "reelFrameContainer"
     reelFrame.x = 100;
     reelFrame.y = 100;
-    app.stage.addChild(reelFrame);
+    baseGame.addChild(reelFrame);
     reelFrame.scale.set(0.8);
 
     const reelFrameCont = new PIXI.Container();
@@ -47,7 +54,7 @@ function createGameUI(app) {
 
 
     createReels(app, reelFrame);
-    createBtnPanel(app);
+    createBtnPanel(app,baseGame);
     setupWelcomeScreen(app);
 }
 

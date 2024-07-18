@@ -14,6 +14,7 @@ function setupWelcomeScreen(app) {
 
     welMainContainer = new PIXI.Container();
     welMainContainer.name = 'welcomeMainContainer';
+
     // Create overlay
     const overlay = new PIXI.Graphics();
     overlay.beginFill(0x000000, 0.5); // Black color with 50% opacity
@@ -30,7 +31,7 @@ function setupWelcomeScreen(app) {
     const welcomeBg = new PIXI.Sprite(PIXI.Loader.shared.resources['welcomeBg'].texture);
     // welContainer.anchor.set(0.5);
     welContainer.scale.set(0.5);
-    welContainer.position.set(180, 80)
+    welContainer.position.set(430, 80)
     // welContainer.position.set(app.screen.width / 4, app.screen.height / 4 + 50)
     welMainContainer.addChild(welContainer);
     welContainer.addChild(welcomeBg);

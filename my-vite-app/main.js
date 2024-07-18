@@ -3,8 +3,11 @@ import { createGameUI } from './public/js/ui.js';
 
 
 const app = new PIXI.Application({
-  width: window.innerWidth,
-  height: window.innerHeight
+  // width: window.innerWidth,
+  // height: window.innerHeight,
+  resizeTo: window , 
+  antialias: true,
+  resolution: 1 
 });
 globalThis.__PIXI_APP__ = app;
 const loaderContainer = document.getElementById('loader');
