@@ -37,6 +37,7 @@ function createBtnPanel(app) {
 
     // spin button
     spinBtn = new PIXI.Sprite(spin_Idle);
+    spinBtn.name = 'spin_';
     spinBtn.anchor.set(0.5);
     spinBtn.scale.set(0.4);
     spinBtn.x = 689;
@@ -48,27 +49,43 @@ function createBtnPanel(app) {
     });
     app.stage.addChild(btnMainContainer);
     btnMainContainer.addChild(spinBtn);
-    spinBtn.on('pointerup', onButtonUp)
-    spinBtn.on('pointerupoutside', onButtonUp)
-    spinBtn.on('pointerover', onButtonOver)
-    spinBtn.on('pointerout', onButtonOut);
+    spinBtn.on('pointerupoutside',()=>{
+        onButtonUp(e)
+    } )
+    spinBtn.on('pointerover',(e)=>{
+        onButtonOver(e)
+    } )
+    spinBtn.on('pointerout',(e)=>{
+
+        onButtonOut(e)
+    } );
 
 
     // INFO button
     info_btn = new PIXI.Sprite(info_Idle);
+    info_btn.name = 'info_';
+    
     info_btn.anchor.set(0.5);
-    info_btn.scale.set(0.4);
-    info_btn.x = 100;
-    info_btn.y = app.view.height - 110;
+    info_btn.scale.set(0.5);
+    info_btn.x = 107.5;
+    info_btn.y = 541;
     info_btn.interactive = true;
     info_btn.buttonMode = true;
     app.stage.addChild(btnMainContainer);
     btnMainContainer.addChild(info_btn);
-    info_btn.on('pointerup', onButtonUp)
-    info_btn.on('pointerupoutside', onButtonUp)
-    info_btn.on('pointerover', onButtonOver)
-    info_btn.on('pointerout', onButtonOut);
-    info_btn.on('pointerdown', onButtonOut);
+    info_btn.on('pointerupoutside', ()=>{
+        onButtonUp(e)
+    } )
+    info_btn.on('pointerover', (e)=>{
+        onButtonOver(e)
+    } )
+    info_btn.on('pointerout', (e)=>{
+
+        onButtonOut(e)
+    });
+    info_btn.on('pointerdown', (e)=>{
+        onButtonPress(e)
+    });
 
 
 
@@ -157,18 +174,51 @@ function createBtnPanel(app) {
 }
 
 // Function to handle button hover
-function onButtonOver() {
-    this.texture = spin_Hover;
+function onButtonOver(evt) {
+    let btnName =  evt.currentTarget.name;
+    let btn = evt.currentTarget;
+    if(btnName == 'info_'){
+        btn.texture = info_Hover;
+    }
+    else{
+        btn.texture = spin_Hover;
+    }
 }
 
 // Function to handle button idle (mouse out)
-function onButtonOut() {
-    this.texture = spin_Idle;
+function onButtonOut(evt) {
+    let btnName =  evt.currentTarget.name;
+    let btn = evt.currentTarget;
+    if(btnName == 'info_'){
+        btn.texture = info_Idle;
+    }
+    else{
+        btn.texture = spin_Idle;
+    }
 }
 
 // Function to handle button release (mouse up)
-function onButtonUp() {
-    this.texture = spin_Disable; // Could change to idle texture if needed
+function onButtonUp(evt) {
+        let btnName =  evt.currentTarget.name;
+        let btn = evt.currentTarget;
+    if(btnName == 'info_'){
+        btn.texture = info_Pressed;
+        
+    }
+    else{
+        btn.texture = spin_Pressed;
+    } 
+}
+// Function to handle button release (mouse up)
+function onButtonPress(evt) {
+    let btnName =  evt.currentTarget.name;
+        let btn = evt.currentTarget;
+    if(btnName == 'info_'){
+        btn.texture = info_Pressed;
+    }
+    else{
+        btn.texture = spin_Pressed;
+    }// Could change to idle texture if needed
 }
 
 export { createBtnPanel }

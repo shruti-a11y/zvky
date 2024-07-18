@@ -1,7 +1,7 @@
 {
     "assets": {
         "background": "./public/assets/loading-screen/Loading_Screen_Background.png",
-        "logo": "assets/images/logo.png",
+        "logo": "./public/assets/logo.png",
         "loadingBar": "assets/images/loading-bar.png",
         "loadingBarBg": "assets/images/loading-bar-bg.png",
 
@@ -13,7 +13,7 @@
         "contiBtnDis": "./public/assets/welcome-screen/Continue_Button_Disabled.png",
         "contiBtnHover": "./public/assets/welcome-screen/Continue_Button_Hover.png",
 
-
+        
 
         "symbol1": "./public/assets/symbols/H1.png",
         "symbol2": "./public/assets/symbols/H2.png",

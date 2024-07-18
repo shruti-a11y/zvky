@@ -13,7 +13,7 @@ function createGameUI(app) {
     background.anchor.set(0.5, 0.5);
     app.stage.addChild(bgContainer);
     bgContainer.addChild(background);
-
+    
     // const spineData = PIXI.Loader.shared.resources['backgroundSpine'].spineData;
 
     // // Create a Spine animation
@@ -36,6 +36,14 @@ function createGameUI(app) {
     reelFrameCont.addChild(reelFrameBg);
 
     reelFrameCont.scale.set(0.7);
+
+    const logo =  new PIXI.Sprite(PIXI.Loader.shared.resources['logo'].texture);
+    logo.name = 'logo'
+    logo.anchor.set(0.5, 0.5);
+    logo.scale.set(0.5)
+    logo.position.set(404, -58)
+    reelFrame.addChild(logo);
+
 
 
     createReels(app, reelFrame);
