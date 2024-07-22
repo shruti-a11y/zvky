@@ -11,6 +11,8 @@ let buttonTexturePressed = PIXI.Texture.from('./public/assets/welcome-screen/Con
 // let buttonTextureDisable = PIXI.Texture.from('./public/assets/welcome-screen/Continue_Button_Disabled.png');
 
 function setupWelcomeScreen(app) {
+    const sound = PIXI.sound.Sound.from('public/assets/sounds/music_main.mp4');
+sound.play();
     app.stage.children[1].interactiveChildren = false;
     baseGameContainer = app.stage.children[1];
     welMainContainer = new PIXI.Container();
@@ -32,7 +34,7 @@ function setupWelcomeScreen(app) {
     const welcomeBg = new PIXI.Sprite(PIXI.Loader.shared.resources['welcomeBg'].texture);
     // welContainer.anchor.set(0.5);
     welContainer.scale.set(0.5);
-    welContainer.position.set(430, 80)
+    welContainer.position.set(395, 80)
     // welContainer.position.set(app.screen.width / 4, app.screen.height / 4 + 50)
     welMainContainer.addChild(welContainer);
     welContainer.addChild(welcomeBg);
