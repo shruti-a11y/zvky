@@ -5,12 +5,12 @@ let welMainContainer;
 let baseGameContainer;
 
 // Set up textures after loading
-let buttonTextureIdle = PIXI.Texture.from('./public/assets/welcome-screen/Continue_Button_Idle.png')
-let buttonTextureHover = PIXI.Texture.from('./public/assets/welcome-screen/Continue_Button_Hover.png');
-let buttonTexturePressed = PIXI.Texture.from('./public/assets/welcome-screen/Continue_Button_Pressed.png');
 // let buttonTextureDisable = PIXI.Texture.from('./public/assets/welcome-screen/Continue_Button_Disabled.png');
 
 function setupWelcomeScreen(app) {
+    let buttonTextureIdle = PIXI.Assets.get('./public/assets/welcome-screen/Continue_Button_Idle.png')
+    let buttonTextureHover = PIXI.Assets.get('./public/assets/welcome-screen/Continue_Button_Hover.png');
+    let buttonTexturePressed = PIXI.Assets.get('./public/assets/welcome-screen/Continue_Button_Pressed.png');
 
     app.stage.children[1].interactiveChildren = false;
     baseGameContainer = app.stage.children[1];
@@ -30,7 +30,8 @@ function setupWelcomeScreen(app) {
     // Create logo image
     let welContainer = new PIXI.Container();
     welContainer.name = 'welcomeContainer';
-    const welcomeBg = new PIXI.Sprite(PIXI.Loader.shared.resources['welcomeBg'].texture);
+    let welcomeBgTex = PIXI.Assets.get("./public/assets/welcome-screen/logo.png");
+    const welcomeBg = new PIXI.Sprite(welcomeBgTex);
     // welContainer.anchor.set(0.5);
     welContainer.scale.set(0.5);
     welContainer.position.set(395, 80)
@@ -39,7 +40,7 @@ function setupWelcomeScreen(app) {
     welContainer.addChild(welcomeBg);
 
     // Create button
-    // const button = new PIXI.Sprite(PIXI.Loader.shared.resources['contiBtnIdel'].texture);
+
     const button = new PIXI.Sprite(buttonTextureIdle);
     button.anchor.set(0.5);
     button.position.set(welContainer.width, welContainer.height * 2 + 50);
@@ -70,16 +71,22 @@ function setupWelcomeScreen(app) {
 
 // Function to handle button hover
 function onButtonOver() {
+    
+    let buttonTextureHover = PIXI.Assets.get('./public/assets/welcome-screen/Continue_Button_Hover.png');
+
     this.texture = buttonTextureHover;
 }
 
 // Function to handle button idle (mouse out)
 function onButtonOut() {
+    let buttonTextureIdle = PIXI.Assets.get('./public/assets/welcome-screen/Continue_Button_Idle.png')
+
     this.texture = buttonTextureIdle;
 }
 
 // Function to handle button press (mouse down)
 function onButtonDown() {
+    let buttonTexturePressed = PIXI.Assets.get('./public/assets/welcome-screen/Continue_Button_Pressed.png');
     this.texture = buttonTexturePressed;
     welMainContainer.visible = false;
     baseGameContainer.interactiveChildren = true;
@@ -88,6 +95,8 @@ function onButtonDown() {
 
 // Function to handle button release (mouse up)
 function onButtonUp() {
+    let buttonTextureIdle = PIXI.Assets.get('./public/assets/welcome-screen/Continue_Button_Idle.png')
+
     this.texture = buttonTextureIdle; // Could change to idle texture if needed
 }
 

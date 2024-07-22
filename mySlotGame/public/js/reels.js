@@ -5,6 +5,18 @@ import * as PIXI from 'pixi.js'
 let isSpinning = false;
 const reels = [];
 const reelMainContainer = new PIXI.Container() ;
+const symbols1 = {"symbol1": "./public/assets/symbols/H1.png",
+        "symbol2": "./public/assets/symbols/H2.png",
+        "symbol3": "./public/assets/symbols/H3.png",
+        "symbol4": "./public/assets/symbols/H4.png",
+        "symbol5": "./public/assets/symbols/L1.png",
+        "symbol6": "./public/assets/symbols/L2.png",
+        "symbol7": "./public/assets/symbols/L3.png",
+        "symbol8": "./public/assets/symbols/L4.png",
+        "symbol9": "./public/assets/symbols/L5.png",
+        "symbol10": "./public/assets/symbols/BONUS.png",
+        "symbol11": "./public/assets/symbols/SCATTER.png",
+        "symbol12": "./public/assets/symbols/WILD.png"}
 
 
 function createReels(app, reelFrame) {
@@ -24,7 +36,8 @@ function createReels(app, reelFrame) {
         for (let j = -1; j < 4; j++) {
             const randomSymbolIndex = Math.floor(Math.random() * 12) + 1;
             let sym = 'symbol'+ randomSymbolIndex;
-            const symbol = new PIXI.Sprite(PIXI.Loader.shared.resources[sym].texture);
+            let letSysText = PIXI.Assets.get(symbols1[sym]);
+            const symbol = new PIXI.Sprite(letSysText);
             symbol.y = j * SYMBOL_SIZE;
             symbol.scale.x = symbol.scale.y = Math.min(SYMBOL_SIZE / symbol.width, SYMBOL_SIZE / symbol.height);
             symbols.push(symbol);
@@ -39,7 +52,6 @@ function createReels(app, reelFrame) {
             const reel = reels[i];
             for (let j = 0; j < reel.symbols.length; j++) {
                 const symbol = reel.symbols[j];
-                // update symbol positions here
             }
         }
     });

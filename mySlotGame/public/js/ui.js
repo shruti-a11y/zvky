@@ -2,17 +2,17 @@ import { createReels } from './reels.js';
 import * as PIXI from 'pixi.js'
 import {setupWelcomeScreen} from './welcomeScreen.js'
 import {createBtnPanel} from './buttonPanel.js'
+import { Spine } from '@esotericsoftware/spine-pixi';
 
 
 function createGameUI(app) {
     
     let bgContainer = new PIXI.Container();
     bgContainer.name = "backgroundContainer";
-    const background = new PIXI.Sprite(PIXI.Loader.shared.resources['background'].texture);
-    background.width = window.innerWidth;
-    background.height = window.innerHeight;
+    // const background = new PIXI.Sprite(PIXI.Loader.shared.resources['background'].texture);
+
     app.stage.addChild(bgContainer);
-    bgContainer.addChild(background);
+    // bgContainer.addChild(bg);
 
 
     const baseGame = new PIXI.Container();
@@ -35,7 +35,8 @@ function createGameUI(app) {
     reelFrame.scale.set(0.8);
 
     const reelFrameCont = new PIXI.Container();
-    const reelFrameBg = new PIXI.Sprite(PIXI.Loader.shared.resources['reelFrame'].texture);
+    let  reelFrameTex = PIXI.Assets.get('./public/assets/reelFrame.png');
+    const reelFrameBg = new PIXI.Sprite(reelFrameTex);
     reelFrameCont.position.set(-182, -116)
     reelFrameBg.name = 'reelFrameBg';
     reelFrame.addChild(reelFrameCont);
@@ -43,7 +44,8 @@ function createGameUI(app) {
 
     reelFrameCont.scale.set(0.7);
 
-    const logo =  new PIXI.Sprite(PIXI.Loader.shared.resources['logo'].texture);
+    let  logoTex = PIXI.Assets.get('./public/assets/logo.png');
+    const logo =  new PIXI.Sprite(logoTex);
     logo.name = 'logo'
     logo.anchor.set(0.5, 0.5);
     logo.scale.set(0.5)
